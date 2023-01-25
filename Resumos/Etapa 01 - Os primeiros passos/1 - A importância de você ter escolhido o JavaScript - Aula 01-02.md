@@ -4,7 +4,7 @@ Antes de publicar a issue, lembre-se de clicar na aba "Preview", para visualizar
 
 <!-- Escreva/insira as imagens após essa linha -->
 
-# A importância de você ter escolhido o JavaScript - Aula 01-03
+# Configurando o ambiente - Aula 01-03
 
 ### Resumo
 
