@@ -34,9 +34,9 @@ Tomar cuidado com anacronismo, tudo aquilo que não segue uma cronologia uma seq
 
 Ler sobre o assunto que você estudou para poder sacar, entender melhor a aula e o tema.
 
-Na teoria, durante a leitura fazer o usa a técnica de leitura ativa.
+Na teoria, durante a leitura fazer o uso de uma técnica chamada **Leitura em Savoring** a técnica de leitura mais poderosa que existe.
 
-Após ler o parágrafo escrever em poucas palavras o que se entendeu sobre o que foi lido, depois passar para o próximo e assim por diante.
+Após ler o parágrafo escrever em poucas palavras o que se entendeu sobre o que foi lido, depois passar isso para o próximo e assim por diante.
 
 ###### E - Exercício
 
