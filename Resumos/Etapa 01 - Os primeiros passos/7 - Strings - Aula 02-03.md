@@ -85,3 +85,20 @@ const userName = 'pedro'
 userName.length //propriedade de comprimento da string
 userName.toUpperCase() //método que retorna outra string maiúscula
 ```
+
+##### .IndexOff()
+
+O método 'indexOff()' encontra o index (posição) do carácter que você especificar dentro dos parênteses, se estiver passando uma string dentro dos parenteses não esquecer de colocar os caracteres envolvidos em aspas.
+
+```javascript
+const email = 'email@gmail.com'
+console.log(email.indexOff('@') //será exibido no console 5
+```
+
+Obs:
+
+    -- o que se está passando dentro dos parenteses é um argumento e não parâmetros, argumento é diferente de parâmetros.
+
+    -- qualquer carácter dentro que estiver envolvido dentro de aspas será considerado uma string, mesmo que ele seja um número.
+
+Os parâmetros são variáveis declaradas dentro de uma função, enquanto os argumentos são os valores passados para essas variáveis quando a função é chamada. Por exemplo, em uma função "soma(a, b)" os parâmetros são "a" e "b" e os argumentos seriam os valores passados na chamada da função, como "soma(2, 3)" os argumentos seriam 2 e 3.
