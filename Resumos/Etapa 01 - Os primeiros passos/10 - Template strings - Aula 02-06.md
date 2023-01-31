@@ -16,7 +16,7 @@ Agora se a string que você vai usar precisa conter dados de variáveis ou aspas
 
 # 
 
-As "template strings" são uma forma mais conveniente de concatenar strings em JavaScript. Elas são identificadas por acentos graves (`) ao invés de aspas simples ou duplas. As template strings permitem a interpolação de expressões dentro da string, ou seja, inserir o valor de variáveis ou o resultado de expressões diretamente dentro da string. Por exemplo:
+As "template strings" são uma forma mais conveniente de concatenar strings em JavaScript. Elas são identificadas por acentos crase (`) ao invés de aspas simples ou duplas. As template strings permitem a interpolação de expressões dentro da string, ou seja, inserir o valor de variáveis ou o resultado de expressões diretamente dentro da string. Por exemplo:
 
 ```javascript
 const name = "Pedro";
