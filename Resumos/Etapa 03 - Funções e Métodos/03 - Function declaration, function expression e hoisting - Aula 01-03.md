@@ -13,7 +13,7 @@ Em JavaScript, existem duas maneiras principais de se declarar uma função: dec
 A declaração de função (Function declaration) é feita usando a palavra-chave "function" seguida pelo nome da função, uma lista de parâmetros entre parênteses e o corpo da função entre chaves. Aqui está um exemplo de uma declaração de função:
 
 ```javascript
-function myFunction(a, b) {
+function myFunction (a, b) {
   return a + b;
 }
 ```
