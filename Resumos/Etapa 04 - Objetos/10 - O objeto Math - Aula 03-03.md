@@ -61,6 +61,29 @@ console.log(randomNum); // Saída: um número aleatório entre 1 e 100
 
 Este código usa a função `Math.floor()` para arredondar para baixo o resultado de `Math.random() * 100` e, em seguida, adiciona 1 ao resultado para obter um número aleatório inteiro entre 1 e 100. A cada execução desse código, você deve obter um número inteiro aleatório entre 1 e 100.
 
+#### Gerando Números Aleatórios (min, max)
+
+Para gerar números aleatórios com um intervalo definido entre minimo e máximo podemos fazer da seguinte forma:
+
+```javascript
+/**Esta função retorna um número aleatório num intervalo
+* passado como argumento
+*@param (min, max)
+*/
+const getRandomNumberMinMax = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+console.log(getRandomNumberMinMax(4,10))
+```
+
+Essa função em JavaScript, chamada `getRandomNumberMinMax`, recebe dois argumentos: `min` e `max`, que representam os valores mínimo e máximo para o intervalo de números que se deseja gerar aleatoriamente.
+
+Dentro da função, utilizamos a função `Math.random()` que gera um número aleatório entre 0 e 1 (exclusivo), ou seja, um número decimal aleatório. Em seguida, multiplicamos esse número pelo intervalo desejado (a diferença entre `max` e "min" acrescida de 1) e arredondamos o resultado para o menor número inteiro possível com a função `Math.floor()`.
+
+Finalmente, adicionamos o valor mínimo (parâmetro "min") ao resultado para que o número gerado fique dentro do intervalo desejado, e retornamos esse valor.
+
+No exemplo do `console.log(getRandomNumberMinMax(4,10))`, a função vai gerar um número aleatório entre 4 e 10 (inclusive), ou seja, pode gerar 4, 5, 6, 7, 8, 9 ou 10. O valor gerado será exibido no console.
+
 #### Abaixo tabela-metodos-arredondamento
 
 <img title="" src="../Etapa%2004%20-%20Objetos/tabela-metodos-arredondamento.jpg" alt="" data-align="center">
