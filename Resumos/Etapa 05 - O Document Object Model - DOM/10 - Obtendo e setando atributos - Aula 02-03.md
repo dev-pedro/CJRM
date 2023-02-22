@@ -28,6 +28,12 @@ Para definir o valor de um atributo de um elemento HTML, podemos usar o método 
 ```javascript
 a.setAttribute('href', 'https://www.linkedin.com/in/pedro-henrique-rjas')
 a.innerText = 'Pedro - Linkedin'
+
+//abaixo o elemento HTML modificado
+<a href="https://www.linkedin.com/in/pedro-henrique-rjas">
+Pedro - Linkedin
+</a>
+
 ```
 
 Nesse exemplo, usamos o método `setAttribute()` para definir o valor do atributo `href` do elemento `a` como `https://www.linkedin.com/in/pedro-henrique-rjas`.
