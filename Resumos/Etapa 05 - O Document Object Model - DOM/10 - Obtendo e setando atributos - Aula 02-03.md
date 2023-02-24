@@ -33,7 +33,6 @@ a.innerText = 'Pedro - Linkedin'
 <a href="https://www.linkedin.com/in/pedro-henrique-rjas">
 Pedro - Linkedin
 </a>
-
 ```
 
 Nesse exemplo, usamos o método `setAttribute()` para definir o valor do atributo `href` do elemento `a` como `https://www.linkedin.com/in/pedro-henrique-rjas`.
@@ -103,3 +102,12 @@ paragraph.setAttribute('class', 'success')
 
 paragraph.setAttribute('style', 'color: red;')
 ```
+
+#### Obter ass referencias CSS
+
+```javascript
+const titleH1 = document.querySelector("h1");
+console.log(titleH1.style);
+```
+
+Ao imprimir o objeto `style` no console, você pode ver todas propriedades CSS disponíveis definidas inline para o elemento `<h1>`. 
