@@ -156,3 +156,9 @@ Em seguida, usamos o método `forEach()` para adicionar um evento de clique a ca
 Dentro da função de retorno do evento, usamos `event.target` para obter o elemento que gerou o evento (ou seja, o elemento clicado) e, em seguida, alteramos sua cor de fundo para vermelho.
 
 Dessa forma, quando um elemento com a classe `.item` é clicado, sua cor de fundo é alterada para vermelho. Note que, com o uso do loop `forEach()`, podemos adicionar o mesmo evento de clique a vários elementos HTML de uma só vez, tornando nosso código mais limpo e eficiente.
+
+#### Event reference
+
+Abaixo o link da página do MDN com todas as referencias  de eventos que podem ser manipulados
+
+[Event reference | MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
