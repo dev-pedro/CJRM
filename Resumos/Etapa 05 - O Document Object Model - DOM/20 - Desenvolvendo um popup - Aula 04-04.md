@@ -122,7 +122,7 @@ popupWrapper.addEventListener("click", (event) => {
 });
 ```
 
-<img src="file:///home/pedro/Dropbox/CJRM/Resumos/Etapa%2005%20-%20O%20Document%20Object%20Model%20-%20DOM/popup.png" title="" alt="" data-align="center">
+<img src="../Etapa%2005%20-%20O%20Document%20Object%20Model%20-%20DOM/popup.png" title="" alt="" data-align="center">
 
 #### some()
 
