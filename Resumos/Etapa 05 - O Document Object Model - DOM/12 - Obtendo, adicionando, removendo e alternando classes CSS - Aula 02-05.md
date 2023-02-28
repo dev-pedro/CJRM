@@ -64,7 +64,7 @@ CSS:
 
 Browser:
 
-<img title="" src="file:///home/pedro/Dropbox/CJRM/Resumos/Etapa%2005%20-%20O%20Document%20Object%20Model%20-%20DOM/manipulacaoCSS.png" alt="" data-align="center">
+<img title="" src="../Etapa%2005%20-%20O%20Document%20Object%20Model%20-%20DOM/manipulacaoCSS.png" alt="" data-align="center">
 
 1. Obter uma lista de classes CSS de um elemento:
 
