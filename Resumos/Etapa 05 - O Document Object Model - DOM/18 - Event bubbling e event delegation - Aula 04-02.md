@@ -93,7 +93,7 @@ HTML:
     </ul>
 
     <button>Adicionar item</button>
-    
+
     <script src="./app.js"></script>
 </body>
 </html>

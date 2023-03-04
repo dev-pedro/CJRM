@@ -23,7 +23,7 @@ HTML:
 <body>
   <div>
     <h1>3 objetos que toda casa brasileira já teve</h1>
-    
+
     <p>TV portátil</p>
     <p>Antena UHF</p>
     <p>Galinha da Maggi</p>
