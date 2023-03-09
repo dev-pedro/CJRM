@@ -4,11 +4,9 @@ Antes de publicar a issue, lembre-se de clicar na aba "Preview", para visualizar
 
 <!-- Escreva/insira as imagens após essa linha -->
 
-# Template HTML e checando as respostas - Aula 01-03
+# Exibindo a pontuação - Aula 02-01
 
 ### Resumo
-
-#### Início da aplicação - Quiz
 
 Códigos utilizados nessa aula.
 
@@ -33,6 +31,16 @@ HTML:
     <div class="intro py-3 bg-primary text-center">
       <div class="container">
         <h2 class="text-light display-3 my-4">Quiz</h2>
+      </div>
+    </div>
+
+    <div class="result py-4 d-none bg-light text-center">
+      <div class="container lead">
+        <p>
+          Você acertou
+          <span class="text-primary display-4 p-3">0%</span>
+          do quiz!
+        </p>
       </div>
     </div>
 
@@ -190,6 +198,8 @@ Javascript:
 const form = document.querySelector('.quiz-form')
 //array contendo as respostas certas das perguntas da tela do Quiz
 const correctAnswers = ['C', 'A', 'C', 'B', 'A']
+//pega a referenv=cia da div 'result' para mostrar o resultado
+const finalResult = document.querySelector('.result')
 
 //trata as respostas do usuário
 const onsubmitAnswers = event => {
@@ -213,14 +223,11 @@ const onsubmitAnswers = event => {
         }
     })
 
-    console.log(score)
+    finalResult.querySelector('span').textContent = `${score}%`
+    finalResult.classList.remove('d-none')
 
 }
 
 //adiciona um ouvinte ao form
 form.addEventListener('submit', onsubmitAnswers)
 ```
-
-#### Tela da aplicação
-
-![](../Etapa%2007%20-%20Aplicação:%20Quiz/quiz.png)
