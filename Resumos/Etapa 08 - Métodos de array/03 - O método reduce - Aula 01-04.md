@@ -4,7 +4,7 @@ Antes de publicar a issue, lembre-se de clicar na aba "Preview", para visualizar
 
 <!-- Escreva/insira as imagens após essa linha -->
 
-# O método map - Aula 01-02
+# O método reduce - Aula 01-04
 
 ### Resumo
 
@@ -39,6 +39,29 @@ console.log(soma); // 15
 Neste exemplo, a função "reduce" é usada para calcular a soma dos elementos do array "numeros". A função de callback recebe o valor acumulado até o momento e o valor atual do elemento, e retorna a soma destes valores. Como nenhum valor inicial foi especificado, o valor inicial do acumulador é o primeiro elemento do array.
 
 Em resumo, o método "reduce" em JavaScript é uma forma conveniente de reduzir os elementos de um array a um único valor, executando uma função de callback para cada elemento do array e acumulando os resultados.
+
+O método "reduce" em JavaScript recebe como argumento uma função de callback que, por sua vez, pode receber até quatro parâmetros:
+
+1. "acumulador" (obrigatório): é o valor acumulado da iteração anterior ou o valor inicial definido para o "reduce";
+2. "valorAtual" (obrigatório): é o valor atual do elemento sendo processado no array;
+3. "index" (opcional): é o índice do elemento sendo processado no array;
+4. "array" (opcional): é a própria referência do array que está sendo iterado.
+
+A função de callback do "reduce" deve retornar o valor do acumulador, que será passado para a próxima iteração. No entanto, o valor retornado pode ser de qualquer tipo, e o tipo de retorno será o mesmo que o tipo do acumulador.
+
+Aqui está um exemplo básico de como usar o "reduce" com uma função de callback que recebe os quatro parâmetros:
+
+```javascript
+const numeros = [1, 2, 3, 4, 5];
+
+const soma = numeros.reduce(function(acumulador, valorAtual, index, array) {
+  return acumulador + valorAtual;
+}, 0);
+
+console.log(soma); // 15
+```
+
+Neste exemplo, a função de callback recebe quatro parâmetros, mas usa apenas os dois primeiros. O parâmetro "acumulador" é inicializado com um valor de 0, e a função retorna a soma do acumulador e do valor atual em cada iteração. No final, a soma dos valores é retornada como o resultado final do "reduce".
 
 #### Em qual situação eu devo usar o `map`, o `filter` e o `redulce` ?
 

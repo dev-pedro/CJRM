@@ -4,7 +4,7 @@ Antes de publicar a issue, lembre-se de clicar na aba "Preview", para visualizar
 
 <!-- Escreva/insira as imagens após essa linha -->
 
-# O método map - Aula 01-02
+# O método filter - Aula 01-03
 
 ### Resumo
 
