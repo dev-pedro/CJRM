@@ -22,11 +22,10 @@ HTML:
 </head>
 <body>
   <h1>Exercício 21</h1>
-  
+
   <script src="./app.js"></script>
 </body>
 </html>
-
 ```
 
 Javascript:
@@ -77,7 +76,7 @@ console.log(squareNubers)
   - Exiba no console uma lista dos nomes dos jogos do array abaixo;
   - A lista deve ter a formatação exemplificada abaixo do array, considerando 
     inclusive o traço e o espaço antes de cada nome.
-  
+
   Dica: para quebrar linha, você pode usar dentro da string o caractere 
   especial \n.
 */
@@ -153,5 +152,29 @@ console.log(tvShowsNames)
   - Observe os loops da sua versão do quiz e considere se, baseado no que foi  
     visto nessa aula, você deve refatorá-los.
 */
-
 ```
+
+#### Side Efect
+
+Em programação, um "side effect" (ou efeito colateral, em português) ocorre quando uma função ou expressão altera algum estado ou variável externa a ela, que não é o seu valor de retorno direto. Em outras palavras, é uma mudança ou efeito que ocorre fora do escopo local da função ou expressão.
+
+Algumas operações comuns que podem causar "side effects" incluem:
+
+- Modificação de variáveis globais ou de escopo superior;
+- Modificação de variáveis em um escopo de fechamento (closure);
+- Modificação de objetos passados por referência como argumentos;
+- Acesso a recursos externos, como bancos de dados, arquivos, dispositivos de rede, etc.
+
+Por exemplo, considerando a função a seguir:
+
+```javascript
+let x = 0;
+
+function incrementar() {
+  x += 1;
+}
+```
+
+A função "incrementar" possui um "side effect", pois ela altera o valor da variável global "x" a cada chamada. Embora a função não retorne nenhum valor, ela tem um efeito colateral ao mudar o valor de uma variável fora do seu escopo.
+
+"Side effects" podem tornar o código mais difícil de entender e depurar, especialmente quando há muitas funções que modificam estados externos. Por isso, é geralmente recomendado minimizar ou evitar efeitos colaterais sempre que possível, escrevendo funções que retornam valores em vez de modificá-los diretamente.
