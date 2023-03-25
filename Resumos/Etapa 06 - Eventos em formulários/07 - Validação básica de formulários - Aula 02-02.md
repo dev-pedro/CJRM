@@ -67,12 +67,12 @@ Javascript:
 form.addEventListener('submit', event => {
     event.preventDefault()
     const usernameRegex = /^[a-zA-Z]{6,12}$/
-    
+
     const input = event.target.username
     const username = input.value
 
     const isAValidUsername = usernameRegex.test(username)//válida o usuário
-    
+
     if(isAValidUsername){
         console.log('Usuário aceito')
         input.value = ''//limpa o campo do imput

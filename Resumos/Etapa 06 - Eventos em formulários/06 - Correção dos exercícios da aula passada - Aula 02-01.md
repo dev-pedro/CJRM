@@ -138,7 +138,7 @@ console.log(NASAResult)
     caracteres, que podem ser quaisquer caracteres, exiba no console a mensagem
     "O valor inserido no input é válido =)";
   - Caso contrário, exiba "Valor inválido =(" no console.
-  
+
   Exemplos:
     - "a[b@X7c" é um valor válido, pois contém 7 caracteres;
     - "jozeti" não é um valor válido, pois contém 6 caracteres.
