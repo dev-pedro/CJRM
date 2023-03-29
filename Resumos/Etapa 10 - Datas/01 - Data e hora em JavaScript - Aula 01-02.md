@@ -36,7 +36,22 @@ console.log(`${dia}/${mes}/${ano} ${hora}:${minutos}:${segundos}`);
 
 Este código irá imprimir a data e hora no formato `dd/mm/yyyy hh:mm:ss`.
 
-# 
+### A lei de pareto nos metodos Date()
+
+A Lei de Pareto também pode ser aplicada aos métodos do objeto `Date()` em JavaScript. É provável que a maioria dos desenvolvedores use apenas uma pequena porcentagem desses métodos na maioria dos casos.
+
+De acordo com a Lei de Pareto, podemos dizer que cerca de 20% dos métodos do objeto `Date()` são responsáveis por 80% dos casos em que os métodos são usados. Esses métodos são os mais comuns e mais úteis na maioria das situações, e incluem:
+
+1. `getFullYear()`: retorna o ano completo (quatro dígitos) de uma data
+2. `getMonth()`: retorna o mês de uma data (0 - Janeiro, 1 - Fevereiro, etc.)
+3. `getDate()`: retorna o dia do mês de uma data (1 - 31)
+4. `getDay()`: retorna o dia da semana de uma data (0 - Domingo, 1 - Segunda, etc.)
+5. `getHours()`: retorna a hora de uma data (0 - 23)
+6. `getMinutes()`: retorna os minutos de uma data (0 - 59)
+7. `getSeconds()`: retorna os segundos de uma data (0 - 59)
+8. `getTime()`: retorna o número de milissegundos desde 1º de janeiro de 1970
+
+Embora haja muitos outros métodos do objeto `Date()` disponíveis, eles são geralmente usados com menos frequência do que os métodos mais comuns. No entanto, é importante lembrar que a seleção adequada de métodos pode ter um grande impacto na eficiência e precisão do seu código JavaScript. É importante conhecer bem os diferentes métodos do objeto `Date()` disponíveis e escolher o mais adequado para cada caso específico.  
 
 #### Códigos usados na aula
 
