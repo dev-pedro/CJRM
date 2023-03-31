@@ -51,7 +51,15 @@ De acordo com a Lei de Pareto, podemos dizer que cerca de 20% dos métodos do ob
 7. `getSeconds()`: retorna os segundos de uma data (0 - 59)
 8. `getTime()`: retorna o número de milissegundos desde 1º de janeiro de 1970
 
-Embora haja muitos outros métodos do objeto `Date()` disponíveis, eles são geralmente usados com menos frequência do que os métodos mais comuns. No entanto, é importante lembrar que a seleção adequada de métodos pode ter um grande impacto na eficiência e precisão do seu código JavaScript. É importante conhecer bem os diferentes métodos do objeto `Date()` disponíveis e escolher o mais adequado para cada caso específico.  
+Embora haja muitos outros métodos do objeto `Date()` disponíveis, eles são geralmente usados com menos frequência do que os métodos mais comuns. No entanto, é importante lembrar que a seleção adequada de métodos pode ter um grande impacto na eficiência e precisão do seu código JavaScript. É importante conhecer bem os diferentes métodos do objeto `Date()` disponíveis e escolher o mais adequado para cada caso específico.
+
+#### Curiosidade: Timestamp - getTime()
+
+O método `getTime()` em JavaScript retorna o número de milissegundos desde 1º de janeiro de 1970 00:00:00 UTC até a data em que é chamado. Essa data específica é usada como ponto de partida para o cálculo do tempo decorrido.
+
+Essa data de referência é conhecida como "Época Unix" e é amplamente utilizada em sistemas operacionais baseados em Unix, bem como em linguagens de programação como JavaScript, Python e muitas outras. A escolha desta data se deu por razões históricas e práticas, em parte devido ao fato de que a maioria dos sistemas operacionais Unix foi criada a partir da década de 1970.
+
+Além disso, a escolha da data de 1º de janeiro de 1970 como ponto de referência para o cálculo do tempo decorrido também tem vantagens práticas, pois permite que os valores de tempo sejam representados em um número de 32 bits com um intervalo de tempo de mais de 68 anos. Isso é útil para muitas aplicações que precisam lidar com tempo em seus cálculos, como sistemas operacionais, bancos de dados, aplicativos da web, entre outros.
 
 #### Códigos usados na aula
 
