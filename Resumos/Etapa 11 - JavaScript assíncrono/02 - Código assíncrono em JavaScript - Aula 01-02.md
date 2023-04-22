@@ -107,7 +107,6 @@ Aqui está uma representação visual de como a execução single thread funcion
 +-------------------------+
 |      Renderização       |
 +-------------------------+
-
 ```
 
 Nessa representação, o código JavaScript é executado sequencialmente, instrução por instrução, e cada instrução é colocada na pilha de execução. A pilha de execução é uma estrutura de dados que mantém o controle de qual instrução está sendo executada atualmente e qual instrução deve ser executada em seguida.

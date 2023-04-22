@@ -23,7 +23,7 @@ HTML:
 </head>
 <body>
   <div class="clock-container"></div>
-  
+
   <script src="./app.js"></script>
 </body>
 </html>
@@ -88,7 +88,7 @@ const dateFormat = (date = new Date()) => {
     year: 'numeric'
   }
   const dateFormated = new Intl.DateTimeFormat('pt-BR', options).format(date)
-  
+
   const hour = formatTimeUnit(date.getHours())
   const minute = formatTimeUnit(date.getMinutes())
   return `${hour}:${minute} - ${dateFormated}`
@@ -191,5 +191,4 @@ const updateClock = () => {
 }
 
 setInterval(updateClock, 1000)
-
 ```
