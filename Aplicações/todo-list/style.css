@@ -1,0 +1,32 @@
+.container {
+  max-width: 400px;
+}
+
+input[type=text],
+input[type=text]:focus {
+  border-color: rgba(199, 199, 199, 0.363);
+  max-width: 400px;
+}
+
+.todos-container li {
+  color: rgb(75, 75, 75);
+  background: #fafafa;
+}
+
+i[data-trash] {
+  cursor: pointer;
+  color: orangered;
+}
+
+.hidden {
+  display: none;
+}
+
+.message-char-over {
+  color: orangered;
+}
+
+.title-todo {
+  color: rgb(75, 75, 75);
+  font-family: 'Alkatra', cursive;
+}

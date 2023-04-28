@@ -1,0 +1,7 @@
+.quiz-title {
+    background: url('/images/hp.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-position-y: 20px;
+    padding: 120px 0px 0px 0px;
+}
