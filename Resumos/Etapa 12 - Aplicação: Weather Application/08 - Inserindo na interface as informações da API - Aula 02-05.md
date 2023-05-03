@@ -30,19 +30,19 @@ HTML:
       <input class="form-control p-4" type="text" name="city" placeholder="Ex: Miami" autofocus>
     </form>
 
-    <div class="card shadow-lg rounded">
+    <div data-js="city-card" class="card shadow-lg rounded d-none">
       <img data-js="time" src="https://via.placeholder.com/400x300" class="card-img-top">
-
+      
       <div data-js="time-icon" class="bg-light mx-auto text-center"></div>
-
+      
       <div data-js="weather-details" class="text-muted text-uppercase text-center">
-        <h5 class="my-3">Nome da Cidade</h5>
-
-        <div class="my-3">Clima</div>
-
+        <h5 data-js="city-name" class="my-3">Nome da Cidade</h5>
+        
+        <div data-js="city-weather" class="my-3">Clima</div>
+        
         <div class="display-4 my-4">
-          <span>00</span>
-          <span>°C</span>
+          <span data-js="city-temperature">00</span>
+          <span>&deg;C</span>
         </div>
       </div>
     </div>
@@ -97,20 +97,34 @@ const fetcData = async url => {
 const getCityData = cityName => fetcData(cityUrl(cityName))
 
 const getCityWeather = cityKey => fetcData(getWeatherUrl(cityKey))
+
 ```
 
 Javascript: app.js
 
 ```javascript
 const cityForm = document.querySelector('[data-js="change-location"]')
+const cityNameContainer = document.querySelector('[data-js="city-name"]')
+const cityWeatherContainer = document.querySelector('[data-js="city-weather"]')
+const cityTemperatureContainer = document.querySelector(
+  '[data-js="city-temperature"]'
+)
+const cityCard = document.querySelector('[data-js="city-card"]')
 
 cityForm.addEventListener('submit', async event => {
-    event.preventDefault()
-    const cityName = event.target.city.value
-    const [{Key, LocalizedName}] = await getCityData(cityName)
-    const [{WeatherText, Temperature}] = await getCityWeather(Key)
-    console.log(WeatherText, Temperature.Metric.Value)
+  event.preventDefault()
+  const cityName = event.target.city.value
+  const [{ Key, LocalizedName }] = await getCityData(cityName)
+  const [{ WeatherText, Temperature }] = await getCityWeather(Key)
 
-    cityForm.reset()
+  if(cityCard.classList.contains('d-none')){
+    cityCard.classList.remove('d-none')
+   }
+
+  cityNameContainer.textContent = LocalizedName
+  cityWeatherContainer.textContent = WeatherText
+  cityTemperatureContainer.textContent = Temperature.Metric.Value
+
+  cityForm.reset()
 })
 ```
