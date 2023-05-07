@@ -22,7 +22,7 @@ HTML:
 </head>
 <body>
   <h1>Exercício 29</h1>
-  
+
   <script src="./app.js"></script>
 </body>
 </html>
@@ -201,7 +201,7 @@ arrayColors.forEach(logColorMessage)
     uma propriedade 18 com o valor 3, se o array contém 2 pessoas com 19 anos,
     o objeto gerado deve ter uma propriedade 19 com o valor 2 e assim por 
     diante.
-  
+
   Resultado desejado: { 18: 3, 19: 2, 20: 1 }
 
   Dica: pesquise por Computed Property Names.

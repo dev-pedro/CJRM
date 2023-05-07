@@ -32,11 +32,11 @@ Javascript:
 
   - Implemente uma função que recebe uma string por parâmetro e retorna a 
     string invertida;
-    
+
     Exemplos: 
       - Se '123' é recebido por parâmetro, '321' deve ser retornado;
       - Se 'abc' é recebido por parâmetro, 'cba' deve ser retornado;
-    
+
   - Após implementar a função, implemente outra versão da função. Essa 2ª 
     versão deve fazer o mesmo que a função anterior faz, mas de forma diferente.
 */
@@ -57,7 +57,7 @@ console.log(reverseString('123456'), reverseStringOther('123456'))
 
 /*
   02
-  
+
   - Descubra o que o código abaixo está fazendo e refatore-o.
 */
 
