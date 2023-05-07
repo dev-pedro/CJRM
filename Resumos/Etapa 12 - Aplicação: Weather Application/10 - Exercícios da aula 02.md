@@ -40,20 +40,6 @@ Javascript:
   - Após implementar a função, implemente outra versão da função. Essa 2ª 
     versão deve fazer o mesmo que a função anterior faz, mas de forma diferente.
 */
-const reverseString = (string = '') => string.split('').reverse().join('')
-
-const reverseStringOther = (string = '') => {
-  const array = string.split('')
-  const newArray = []
-
-  for (let i = array.length - 1; i >= 0; i--) {
-    newArray.push(array[i])
-  }
-
-  return newArray.join('')
-}
-
-console.log(reverseString('123456'), reverseStringOther('123456'))
 
 /*
   02
@@ -62,12 +48,12 @@ console.log(reverseString('123456'), reverseStringOther('123456'))
 */
 
 const numbers = [5, 20, 7, 32, 47, 83, 91, 27, 33]
-const foundNumber = numbers.includes(15)
-// numbers.forEach(number => {
-//   if (number === 15) {
-//     foundNumber = true
-//   }
-// })
+let foundNumber = false
+numbers.forEach(number => {
+  if (number === 15) {
+   foundNumber = true
+  }
+})
 
 console.log(foundNumber)
 
