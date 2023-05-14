@@ -39,3 +39,9 @@ localStorage.clear();
 Depois de executar `localStorage.clear()`, todos os pares chave-valor que foram armazenados no armazenamento local do navegador serão removidos e o `localStorage.length` será igual a 0.
 
 É importante lembrar que o método `clear` irá remover todos os pares chave-valor do `localStorage` do domínio e do protocolo atual. Portanto, se você tiver usado o `localStorage` em diferentes domínios ou protocolos, o método `clear` deve ser executado separadamente em cada um desses contextos.
+
+#### Referencias
+
+[Storage: removeItem() method - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem)
+
+[Storage: clear() method - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Storage/clear)

@@ -24,3 +24,9 @@ Para acessar um valor armazenado no localStorage, podemos chamar a propriedade "
 const nome = localStorage.getItem('nome');
 console.log(nome); // Imprime "Pedro"
 ```
+
+#### Referencias
+
+[Storage: setItem() method - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem)
+
+[Storage: getItem() method - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem)
