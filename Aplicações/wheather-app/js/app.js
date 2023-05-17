@@ -14,7 +14,6 @@ const showCityCard = () => {
     cityCard.classList.remove('d-none')
   }
 }
-
 //salva dados localmente da ultima cidade pesquisada
 const setPersistenteWeather = cityName => {
   localStorage.setItem('cityNameSaved', cityName)
@@ -46,7 +45,6 @@ const showCityWeatherInfo = async cityName => {
   const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] =
     await getCityWeather(Key)
 
-  setPersistenteWeather(LocalizedName)
   insertInfoWeather(
     LocalizedName,
     WeatherText,
@@ -57,8 +55,11 @@ const showCityWeatherInfo = async cityName => {
   showCityCard()
 }
 
-if (getPersistenteWeather()) {
-  showCityWeatherInfo(getPersistenteWeather())
+const showLocalStoredCity = () => {
+  const city = getPersistenteWeather()
+  if (city) {
+    showCityWeatherInfo(city)
+  }
 }
 
 //envio do form
@@ -68,6 +69,9 @@ cityForm.addEventListener('submit', async event => {
   const cityName = event.target.city.value
 
   showCityWeatherInfo(cityName)
+  setPersistenteWeather(cityName)
 
   cityForm.reset()
 })
+
+showLocalStoredCity()
