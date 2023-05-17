@@ -16,33 +16,28 @@ const showCityCard = () => {
 }
 
 //salva dados localmente da ultima cidade pesquisada
-const setPersistenteWeather = objDataWeatherPersist => {
-  localStorage.setItem('dataWeatherPersist', JSON.stringify(objDataWeatherPersist))
+const setPersistenteWeather = cityName => {
+  localStorage.setItem('cityNameSaved', cityName)
 }
 //pega os dados da ultima cidade salva
 const getPersistenteWeather = () => {
-  return JSON.parse(localStorage.getItem('dataWeatherPersist'))
+  return localStorage.getItem('cityNameSaved')
 }
 
-const insertInfoWeather = ({
+const insertInfoWeather = (
   LocalizedName,
   WeatherText,
   Temperature,
   IsDayTime,
   WeatherIcon
-}) => {
+) => {
   const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
 
   timeImg.src = IsDayTime ? './src/day.svg' : './src/night.svg'
   timeIconContainer.innerHTML = timeIcon
   cityNameContainer.textContent = LocalizedName
   cityWeatherContainer.textContent = WeatherText
-  cityTemperatureContainer.textContent = Temperature.Metric.Value
-}
-
-if (localStorage.getItem('dataWeatherPersist')) {
-  insertInfoWeather(getPersistenteWeather())
-  showCityCard()
+  cityTemperatureContainer.textContent = Temperature
 }
 
 //popula as informações no card
@@ -51,21 +46,20 @@ const showCityWeatherInfo = async cityName => {
   const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] =
     await getCityWeather(Key)
 
-  const dataWeatherPersist = {
-    Key,
+  setPersistenteWeather(LocalizedName)
+  insertInfoWeather(
     LocalizedName,
     WeatherText,
-    Temperature,
+    Temperature.Metric.Value,
     IsDayTime,
     WeatherIcon
-  }
-  console.log(dataWeatherPersist)
-  setPersistenteWeather(dataWeatherPersist)
-
-  insertInfoWeather(dataWeatherPersist)
+  )
   showCityCard()
 }
 
+if (getPersistenteWeather()) {
+  showCityWeatherInfo(getPersistenteWeather())
+}
 
 //envio do form
 cityForm.addEventListener('submit', async event => {

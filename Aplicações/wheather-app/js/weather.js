@@ -21,5 +21,3 @@ const fetcData = async url => {
 const getCityData = cityName => fetcData(cityUrl(cityName))
 
 const getCityWeather = cityKey => fetcData(getWeatherUrl(cityKey))
-
-  
