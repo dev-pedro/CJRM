@@ -11,7 +11,7 @@ Antes de publicar a issue, lembre-se de clicar na aba "Preview", para visualizar
 ```javascript
 /*
   Aviso: se você executar, acidentalmente, um loop infinito, faça o seguinte:
-  
+
   - Feche o navegador;
   - Desconecte o servidor;
   - Modifique o seu código para que o looping infinito não aconteça;
