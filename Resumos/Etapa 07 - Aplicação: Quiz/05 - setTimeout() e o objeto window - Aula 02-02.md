@@ -276,5 +276,4 @@ const onsubmitAnswers = event => {
 
 //adiciona um ouvinte ao form
 form.addEventListener('submit', onsubmitAnswers)
-
 ```

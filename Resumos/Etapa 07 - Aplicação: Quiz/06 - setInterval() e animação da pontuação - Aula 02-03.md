@@ -291,11 +291,11 @@ const onsubmitAnswers = event => {
 
     //mostra o resultado em uma 'div' abaixo do nome da aplicação
     finalResult.classList.remove('d-none')
-    
+
     //anima a pontuação do resultado final 
     let counter = 0
     const timer = setInterval(() => {
-        
+
         if(counter === score){
             clearInterval(timer)
         }
