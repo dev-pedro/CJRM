@@ -48,7 +48,6 @@ getTodos((error, data) => {
 
 console.log(3)
 console.log(4)
-
 ```
 
 HTML:
@@ -62,7 +61,7 @@ HTML:
     <title>Fazendo requests HTTP - Aula 02-03</title>
 </head>
 <body>
-    
+
     <script src="app.js"></script>
 </body>
 </html>
