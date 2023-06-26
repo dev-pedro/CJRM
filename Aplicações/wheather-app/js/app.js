@@ -18,10 +18,6 @@ const showCityCard = () => {
 const setPersistenteWeather = cityName => {
   localStorage.setItem('cityNameSaved', cityName)
 }
-//pega os dados da ultima cidade salva
-const getPersistenteWeather = () => {
-  return localStorage.getItem('cityNameSaved')
-}
 
 const insertInfoWeather = (
   LocalizedName,
@@ -55,6 +51,11 @@ const showCityWeatherInfo = async cityName => {
   showCityCard()
 }
 
+//pega os dados da ultima cidade salva
+const getPersistenteWeather = () => {
+  return localStorage.getItem('cityNameSaved')
+}
+
 const showLocalStoredCity = () => {
   const city = getPersistenteWeather()
   if (city) {
@@ -62,8 +63,7 @@ const showLocalStoredCity = () => {
   }
 }
 
-//envio do form
-cityForm.addEventListener('submit', async event => {
+const handleCityForm = event => {
   event.preventDefault()
 
   const cityName = event.target.city.value
@@ -72,6 +72,9 @@ cityForm.addEventListener('submit', async event => {
   setPersistenteWeather(cityName)
 
   cityForm.reset()
-})
+}
+
+//envio do form
+cityForm.addEventListener('submit', handleCityForm)
 
 showLocalStoredCity()
