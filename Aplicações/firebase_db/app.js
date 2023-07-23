@@ -10,13 +10,13 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js'
 
 const firebaseConfig = {
-  apiKey: apiKey,
-  authDomain: 'testing-firebase-e7968.firebaseapp.com',
-  projectId: 'testing-firebase-e7968',
-  storageBucket: 'testing-firebase-e7968.appspot.com',
-  messagingSenderId: '555490413778',
-  appId: '1:555490413778:web:2b4e7c1a9c97d717ceb10b',
-  measurementId: 'G-K2F9FZS609'
+  apiKey: APIKEY,
+  authDomain: AUTHDOMAIN,
+  projectId: PROJECTID,
+  storageBucket: STORAGEBUCKET,
+  messagingSenderId: MESSAGINGSENDERID,
+  appId: APPID,
+  measurementId: MEASUREMENTID
 }
 
 const app = initializeApp(firebaseConfig)
