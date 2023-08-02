@@ -1,0 +1,117 @@
+<!--
+Antes de publicar a issue, lembre-se de clicar na aba "Preview", para visualizar se a formatação está correta =)
+-->
+
+<!-- Escreva/insira as imagens após essa linha -->
+
+# Correção dos exercícios da aula 02 da etapa 15 - Aula 03-01 até Aula 03-08
+
+### Resumo
+
+### Temas Abordados nas Aulas dos Exercícios
+
+Em JavaScript, o termo "utility functions" se refere a funções que são projetadas para realizar tarefas comuns e úteis em programação. Essas funções são criadas para facilitar a reutilização de código e simplificar a implementação de operações frequentes.
+
+As utility functions geralmente não estão diretamente relacionadas a uma tarefa específica do domínio do problema que você está resolvendo, mas sim a funcionalidades genéricas que podem ser aplicadas em várias situações.
+
+Exemplos de utility functions em JavaScript incluem:
+
+1. Funções para manipulação de arrays:
+   
+   - `Array.prototype.map()`: Cria um novo array com os resultados da aplicação de uma função a cada elemento do array original.
+   - `Array.prototype.filter()`: Cria um novo array com todos os elementos que passam por um teste (fornecido por uma função).
+   - `Array.prototype.reduce()`: Reduz os elementos de um array para um único valor, aplicando uma função acumuladora.
+
+2. Funções para manipulação de strings:
+   
+   - `String.prototype.trim()`: Remove os espaços em branco do início e do final de uma string.
+   - `String.prototype.split()`: Divide uma string em um array de substrings, com base em um separador especificado.
+
+3. Funções para manipulação de datas e horas:
+   
+   - `Date.now()`: Retorna o número de milissegundos desde 1º de janeiro de 1970 (Unix Epoch) até o momento atual.
+   - `Date.prototype.toISOString()`: Retorna uma representação da data em formato de string no padrão ISO 8601.
+
+4. Funções de validação e utilitários diversos:
+   
+   - `isNaN()`: Verifica se um valor é NaN (Not-a-Number).
+   - `parseInt()`: Converte uma string em um número inteiro.
+   - `encodeURIComponent()` e `decodeURIComponent()`: Codifica e decodifica componentes de uma URL.
+
+Essas são apenas algumas das muitas utility functions disponíveis em JavaScript. É comum que desenvolvedores criem suas próprias utility functions personalizadas para resolver problemas específicos em seus projetos, tornando o código mais limpo, organizado e mais fácil de manter. Essas funções podem ser agrupadas em bibliotecas e módulos reutilizáveis para facilitar o compartilhamento com outros desenvolvedores.
+
+### Criando Funções Utilitárias
+
+Para criar uma função que permita digitar menos ao usar o `console.log()`, você pode fazer o "destructuring" do objeto `console` e criar uma nova função chamada `log`, que encapsula o `console.log()` para que você possa usar apenas `log()` para exibir mensagens no console. Aqui está dois exemplo de como fazer isso:
+
+1. Exemplo
+
+```javascript
+// Destructuring do objeto console
+const { log } = console;
+
+// Exemplo de uso
+log('Isso é um exemplo.');
+log('Você pode usar a função "log" agora!');
+```
+
+Neste exemplo, estamos utilizando o recurso de destructuring para extrair a função `log` do objeto `console`. Em seguida, atribuímos essa função extraída a uma variável com o mesmo nome (`log`). Agora, podemos chamar a função `log()` diretamente, em vez de usar `console.log()`, o que nos permite digitar menos ao exibir mensagens no console.
+
+2. Exemplo
+
+```javascript
+// Criando uma funç
+const newLog = (...value) => console.log(...value)
+
+// Exemplo de uso
+log('Isso é um exemplo.');
+newLog('Arg 1 - Você pode usar a função "log" agora com mais argumentos!', 'Arg 2 - Segundo argumento!');
+```
+
+No código fornecido, temos duas abordagens para criar funções que imprimem mensagens no console, mas com algumas diferenças na sua implementação.
+
+1. **Abordagem 1: const { log } = console;**
+   
+   Nesta abordagem, estamos usando a técnica de "destructuring" do objeto `console`, onde estamos extraindo a função `log` do objeto `console` e armazenando-a em uma constante com o mesmo nome, `log`. Dessa forma, podemos usar `log` como um alias para `console.log()`, o que nos permite chamar `log('mensagem')` em vez de `console.log('mensagem')`. O comportamento da função `log` será exatamente o mesmo que a função `console.log()` original, pois é apenas um alias para ela.
+   
+   **Exemplo de uso:**
+   
+   ```javascript
+   log('Isso é um exemplo.');
+   ```
+
+2. **Abordagem 2: const newLog = (...value) => console.log(...value);**
+   
+   Nesta abordagem, estamos criando uma nova função chamada `newLog` usando uma função de seta (arrow function). A função `newLog` recebe um número variável de argumentos (representados por `...value`) e, em seguida, repassa esses argumentos para a função `console.log()` usando a sintaxe `console.log(...value)`. Isso permite que a função `newLog` suporte o mesmo comportamento que `console.log()` quando se trata de exibir mensagens no console.
+   
+   **Exemplo de uso:**
+   
+   ```javascript
+   newLog('Arg 1 - Você pode usar a função "log" agora com mais argumentos!', 'Arg 2 - Segundo argumento!');
+   ```
+
+Ambas as abordagens têm resultados semelhantes no exemplo de uso. Elas permitem exibir mensagens no console, mas a primeira abordagem usa um alias (`log`) para a função `console.log()`, enquanto a segunda abordagem cria uma nova função que apenas repassa os argumentos para `console.log()`. A escolha entre as duas abordagens depende das preferências pessoais do desenvolvedor e do contexto específico do código em que serão utilizadas. Ambas são válidas e podem ser úteis para diferentes situações.
+
+### IntelliSense
+
+IntelliSense é um recurso encontrado em muitos ambientes de desenvolvimento integrado (IDEs) que ajuda os programadores a escrever código de forma mais eficiente e precisa. Foi desenvolvido pela Microsoft e originalmente implementado no Microsoft Visual Studio, mas agora está disponível em muitos outros ambientes de desenvolvimento e editores de código.
+
+O IntelliSense fornece recursos de autocompletar, sugestões contextuais, informações sobre parâmetros de função, documentação e muito mais, tudo enquanto você digita o código. O objetivo principal do IntelliSense é aumentar a produtividade do programador, economizando tempo e minimizando erros comuns.
+
+Os principais recursos do IntelliSense incluem:
+
+1. Autocompletar: O IntelliSense exibe uma lista de opções de código relevantes enquanto você digita, permitindo que você pressione "Tab" ou "Enter" para completar automaticamente o código desejado.
+
+2. Sugestões de código: À medida que você digita, o IntelliSense sugere o próximo código que pode ser relevante para o contexto, tornando a escrita do código mais rápida e eficiente.
+
+3. Documentação de código: O IntelliSense exibe informações contextuais sobre funções, métodos e classes, como descrições, parâmetros, tipos de retorno e exemplos de uso, facilitando o entendimento do código e sua utilização correta.
+
+4. Navegação de código: O IntelliSense permite navegar facilmente pelo código-fonte, fornecendo atalhos para a definição de classes, métodos e variáveis.
+
+5. Realce de erros: O IntelliSense identifica erros de sintaxe à medida que você digita, destacando-os com cores específicas para correção rápida.
+
+O IntelliSense é especialmente útil em linguagens de programação complexas, como C++, C#, Python, JavaScript e outras, onde há muitas funções, bibliotecas e classes disponíveis para uso. Ele aumenta a produtividade do desenvolvedor, reduzindo a necessidade de pesquisar a documentação constantemente e melhorando a precisão do código escrito.
+
+Por fim, o IntelliSense é um recurso poderoso para programadores de todos os níveis de experiência, tornando o processo de desenvolvimento de software mais eficiente e agradável. É um dos muitos recursos que ajudam a tornar as IDEs modernas ferramentas essenciais para os desenvolvedores.
+
+[IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense)

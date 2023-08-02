@@ -28,21 +28,27 @@ const gamesLis = document.querySelector('[data-js="games-list"]')
 const buttonUnsub = document.querySelector('[data-js="unsub"]')
 
 const unsubscribe = onSnapshot(collectionGames, querySnapshot => {
+  const options = {}
+
   const hasPendingWrites = querySnapshot.metadata.hasPendingWrites
   if (!hasPendingWrites) {
     const gamesList = querySnapshot.docs.reduce((acc, doc) => {
       const { title, developedBy, createdAt } = doc.data()
+
+      const timeOptions = { timeStyle: 'short', dateStyle: 'short' }
+      const formatedDate = new Intl.DateTimeFormat('pt-BR', timeOptions).format(
+        createdAt.toDate()
+      )
+
       acc += `<li class="my-4 d-flex flex-column" data-id="${doc.id}">
       <h5>${title}</h5>
       
       <ul>
         <li>Desenvolvido por ${developedBy}</li>
-        <li>Adicionado ao banco em ${createdAt.toDate()}</li>
+        <li>Adicionado ao banco em ${formatedDate.replace(',', ' ')}</li>
       </ul>
   
-      <button class="btn btn-danger btn-sm align-self-end m-2" data-remove="${
-        doc.id
-      }">Remover</button>
+      <button class="btn btn-danger btn-sm align-self-end m-2" data-remove="${doc.id}">Remover</button>
       
     </li>`
       return acc
