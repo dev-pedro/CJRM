@@ -154,3 +154,206 @@ console.log(dataFormatada); // Saída: 3 de agosto de 2023, 12:34:56 PM PDT
 Neste exemplo, estamos formatando a data `2023-08-03T12:34:56` no local `pt-BR` com várias opções de formatação. A saída resultante inclui o nome completo do mês, dia do mês, ano, hora (horas, minutos, segundos) e o nome curto do fuso horário (PDT - Horário de Verão do Pacífico).
 
 O construtor `Intl.DateTimeFormat()` é uma ferramenta poderosa para trabalhar com formatação de data e hora, especialmente ao criar aplicativos internacionalizados que precisam exibir datas e horas em diferentes idiomas e regiões.
+
+# Códigos Usados
+
+HTML:
+
+```html
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Banco de Dados - Firebase</title>
+  </head>
+  <body>
+    <div class="container text-white my-5">
+      <h2>Games</h2>
+
+      <ul data-js="games-list"></ul>
+
+      <form data-js="add-game-form">
+        <div class="mb-3">
+          <label for="title" class="form-label">Nome</label>
+          <input
+            value=""
+            class="form-control bg-transparent text-white"
+            name="title"
+            placeholder="Ex: Ghost of Tsushima"
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="developer" class="form-label">Desenvolvedora</label>
+          <input
+            value=""
+            class="form-control bg-transparent text-white"
+            name="developer"
+            placeholder="Ex: Capcom"
+            required
+          />
+        </div>
+        <button class="btn btn-success">Adicionar game</button>
+      </form>
+
+      <div class="d-grid gap2 mt-4">
+        <button data-js="unsub" class="btn btn-outline-warning btn-lg">
+          Desabilitar listener em tempo real
+        </button>
+      </div>
+    </div>
+    <script src="apiKeys.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+```
+
+CSS:
+
+```css
+body {
+    background-color: #212529;
+  }
+```
+
+Javascript:
+
+```javascript
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js'
+import {
+  getFirestore,
+  collection,
+  doc,
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js'
+
+const firebaseConfig = {
+  apiKey: APIKEY,
+  authDomain: AUTHDOMAIN,
+  projectId: PROJECTID,
+  storageBucket: STORAGEBUCKET,
+  messagingSenderId: MESSAGINGSENDERID,
+  appId: APPID,
+  measurementId: MEASUREMENTID
+}
+
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
+const collectionGames = collection(db, 'games')
+
+const formAddGame = document.querySelector('[data-js="add-game-form"]')
+const gamesLis = document.querySelector('[data-js="games-list"]')
+const buttonUnsub = document.querySelector('[data-js="unsub"]')
+
+const log = (...anyArg) => console.log(...anyArg)
+
+const getFormatedDate = date => {
+  const timeOptions = { dateStyle: 'short', timeStyle: 'short' }
+  return new Intl.DateTimeFormat('pt-BR', timeOptions).format(date)
+}
+
+const renderGamesList = querySnapshot => {
+  const hasPendingWrites = querySnapshot.metadata.hasPendingWrites
+  if (!hasPendingWrites) {
+    gamesLis.innerHTML = querySnapshot.docs.reduce((acc, doc) => {
+      const [id, { title, developedBy, createdAt }] = [doc.id, doc.data()]
+      const date = createdAt.toDate()
+
+      return `${acc}<li class="my-4 d-flex flex-column" data-id="${id}">
+      <h5>${title}</h5>
+      
+      <ul>
+        <li>Desenvolvido por ${developedBy}</li>
+        <li>Adicionado ao banco em ${getFormatedDate(date)}</li>
+      </ul>
+  
+      <button class="btn btn-danger btn-sm align-self-end m-2" data-remove="${id}">Remover</button>
+      
+    </li>`
+    }, '')
+  }
+}
+
+const to = async promise =>
+  promise.then(result => [null, result]).catch(error => [error])
+
+const addGame = async e => {
+  e.preventDefault()
+  const newGAme = {
+    title: e.target.title.value,
+    developedBy: e.target.developer.value,
+    createdAt: serverTimestamp()  
+  }
+
+  const [error, doc] = await to(addDoc(collectionGames, newGAme))
+
+  if (error) {
+    return log(error)
+  }
+
+  log('Documento criado com o ID = ', doc.id)
+  e.target.reset()
+  e.target.title.focus()
+}
+
+const deleteGame = async e => {
+  const removeId = e.target.dataset.remove
+
+  if (!removeId) {
+    return
+  } // return early
+
+  const [error] = await to(deleteDoc(doc(db, 'games', removeId)))
+
+  if (error) {
+    return log(error)
+  }
+
+  log('Game removido do FireStore')
+}
+
+const handleSnapshotError = e => log(e)
+
+const unsubscribe = onSnapshot(
+  collectionGames,
+  renderGamesList,
+  handleSnapshotError
+)
+formAddGame.addEventListener('submit', addGame)
+gamesLis.addEventListener('click', deleteGame)
+buttonUnsub.addEventListener('click', unsubscribe)
+
+/*
+// atualizar um documento no firestore
+
+const docRef = doc(db, 'games', '7molj3lIL7QceBXIFu8Z')
+if (false) {
+  const updateDoc = { title: 'Viva Piñata', developedBy: 'Microsoft' }
+  const merge = { merge: true }
+  
+  setDoc(docRef, updateDoc, merge)
+  .then(() => log('Documento atualizado com sucesso'))
+  .catch(log)
+}
+
+if (true) {
+  const newTitleDoc = { title: 'Grand Turismo ' }
+  updateDoc(docRef, newTitleDoc)
+    .then(() => log('Documento atualizado com sucesso'))
+    .catch(log)
+}
+*/
+```
