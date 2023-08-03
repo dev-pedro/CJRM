@@ -56,37 +56,42 @@ const renderGamesList = querySnapshot => {
   }
 }
 
-const addGame = e => {
+const to = async promise =>
+  promise.then(result => [null, result]).catch(error => [error])
+
+const addGame = async e => {
   e.preventDefault()
   const newGAme = {
     title: e.target.title.value,
     developedBy: e.target.developer.value,
-    createdAt: serverTimestamp()
+    createdAt: serverTimestamp()  
   }
 
-  addDoc(collectionGames, newGAme)
-    .then(doc => {
-      log('Documento criado com o ID = ', doc.id)
-      e.target.reset()
-      e.target.title.focus()
-    })
-    .catch(log)
+  const [error, doc] = await to(addDoc(collectionGames, newGAme))
+
+  if (error) {
+    return log(error)
+  }
+
+  log('Documento criado com o ID = ', doc.id)
+  e.target.reset()
+  e.target.title.focus()
 }
 
 const deleteGame = async e => {
   const removeId = e.target.dataset.remove
 
-  if(!removeId){
+  if (!removeId) {
     return
-  }// return early
+  } // return early
 
-  try {
-    await deleteDoc(doc(db, 'games', removeId))
-    log('Game removido do FireStore')
-  } catch (e) {
-    log(e)
+  const [error] = await to(deleteDoc(doc(db, 'games', removeId)))
+
+  if (error) {
+    return log(error)
   }
-  
+
+  log('Game removido do FireStore')
 }
 
 const handleSnapshotError = e => log(e)
