@@ -115,3 +115,42 @@ O IntelliSense é especialmente útil em linguagens de programação complexas, 
 Por fim, o IntelliSense é um recurso poderoso para programadores de todos os níveis de experiência, tornando o processo de desenvolvimento de software mais eficiente e agradável. É um dos muitos recursos que ajudam a tornar as IDEs modernas ferramentas essenciais para os desenvolvedores.
 
 [IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense)
+
+### Intl.DateTimeFormat() constructor
+
+O construtor `Intl.DateTimeFormat()` é uma função nativa do JavaScript usada para criar objetos que representam formatação de data e hora de acordo com as regras do local especificado. Ele faz parte da API de Internacionalização, que permite que aplicativos exibam informações de data e hora de maneira amigável ao usuário e culturalmente apropriada com base no local do usuário.
+
+Aqui está a sintaxe básica do construtor `Intl.DateTimeFormat()`:
+
+```javascript
+new Intl.DateTimeFormat(locales, options)
+```
+
+Parâmetros:
+
+- `locales` (opcional): Uma string ou um array de strings que especificam o(s) local(is) ou etiqueta(s) de idioma a serem usados. O local determina como as informações de data e hora são formatadas. Se esse parâmetro não for fornecido, o local padrão do ambiente do usuário será usado.
+- `options` (opcional): Um objeto contendo várias opções de configuração para formatar a data e a hora. Ele inclui propriedades como `timeZone`, `hour12`, `weekday`, `year`, `month`, `day`, `hour`, `minute`, `second`, etc.
+
+Aqui está um exemplo de como usar `Intl.DateTimeFormat()`:
+
+```javascript
+const data = new Date('2023-08-03T12:34:56');
+const local = 'pt-BR';
+const opcoes = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  timeZoneName: 'short',
+};
+
+const formatador = new Intl.DateTimeFormat(local, opcoes);
+const dataFormatada = formatador.format(data);
+console.log(dataFormatada); // Saída: 3 de agosto de 2023, 12:34:56 PM PDT
+```
+
+Neste exemplo, estamos formatando a data `2023-08-03T12:34:56` no local `pt-BR` com várias opções de formatação. A saída resultante inclui o nome completo do mês, dia do mês, ano, hora (horas, minutos, segundos) e o nome curto do fuso horário (PDT - Horário de Verão do Pacífico).
+
+O construtor `Intl.DateTimeFormat()` é uma ferramenta poderosa para trabalhar com formatação de data e hora, especialmente ao criar aplicativos internacionalizados que precisam exibir datas e horas em diferentes idiomas e regiões.

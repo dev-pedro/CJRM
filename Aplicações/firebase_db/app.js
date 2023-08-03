@@ -27,38 +27,36 @@ const formAddGame = document.querySelector('[data-js="add-game-form"]')
 const gamesLis = document.querySelector('[data-js="games-list"]')
 const buttonUnsub = document.querySelector('[data-js="unsub"]')
 
-const unsubscribe = onSnapshot(collectionGames, querySnapshot => {
-  const options = {}
+const log = (...anyArg) => console.log(...anyArg)
 
+const getFormatedDate = date => {
+  const timeOptions = { dateStyle: 'short', timeStyle: 'short' }
+  return new Intl.DateTimeFormat('pt-BR', timeOptions).format(date)
+}
+
+const renderGamesList = querySnapshot => {
   const hasPendingWrites = querySnapshot.metadata.hasPendingWrites
   if (!hasPendingWrites) {
-    const gamesList = querySnapshot.docs.reduce((acc, doc) => {
-      const { title, developedBy, createdAt } = doc.data()
+    gamesLis.innerHTML = querySnapshot.docs.reduce((acc, doc) => {
+      const [id, { title, developedBy, createdAt }] = [doc.id, doc.data()]
+      const date = createdAt.toDate()
 
-      const timeOptions = { timeStyle: 'short', dateStyle: 'short' }
-      const formatedDate = new Intl.DateTimeFormat('pt-BR', timeOptions).format(
-        createdAt.toDate()
-      )
-
-      acc += `<li class="my-4 d-flex flex-column" data-id="${doc.id}">
+      return `${acc}<li class="my-4 d-flex flex-column" data-id="${id}">
       <h5>${title}</h5>
       
       <ul>
         <li>Desenvolvido por ${developedBy}</li>
-        <li>Adicionado ao banco em ${formatedDate.replace(',', ' ')}</li>
+        <li>Adicionado ao banco em ${getFormatedDate(date)}</li>
       </ul>
   
-      <button class="btn btn-danger btn-sm align-self-end m-2" data-remove="${doc.id}">Remover</button>
+      <button class="btn btn-danger btn-sm align-self-end m-2" data-remove="${id}">Remover</button>
       
     </li>`
-      return acc
     }, '')
-
-    gamesLis.innerHTML = gamesList
   }
-})
+}
 
-formAddGame.addEventListener('submit', e => {
+const addGame = e => {
   e.preventDefault()
   const newGAme = {
     title: e.target.title.value,
@@ -67,39 +65,58 @@ formAddGame.addEventListener('submit', e => {
   }
 
   addDoc(collectionGames, newGAme)
-    .then(doc => console.log('Documento criado com o ID = ', doc.id))
-    .catch(console.log)
-})
+    .then(doc => {
+      log('Documento criado com o ID = ', doc.id)
+      e.target.reset()
+      e.target.title.focus()
+    })
+    .catch(log)
+}
 
-gamesLis.addEventListener('click', e => {
+const deleteGame = async e => {
   const removeId = e.target.dataset.remove
-  if (removeId) {
-    deleteDoc(doc(db, 'games', removeId))
-      .then(() => {
-        console.log('Game removido do FireStore.')
-      })
-      .catch(console.log)
-  }
-})
 
+  if(!removeId){
+    return
+  }// return early
+
+  try {
+    await deleteDoc(doc(db, 'games', removeId))
+    log('Game removido do FireStore')
+  } catch (e) {
+    log(e)
+  }
+  
+}
+
+const handleSnapshotError = e => log(e)
+
+const unsubscribe = onSnapshot(
+  collectionGames,
+  renderGamesList,
+  handleSnapshotError
+)
+formAddGame.addEventListener('submit', addGame)
+gamesLis.addEventListener('click', deleteGame)
 buttonUnsub.addEventListener('click', unsubscribe)
 
 /*
+// atualizar um documento no firestore
 
 const docRef = doc(db, 'games', '7molj3lIL7QceBXIFu8Z')
 if (false) {
   const updateDoc = { title: 'Viva Piñata', developedBy: 'Microsoft' }
   const merge = { merge: true }
-
+  
   setDoc(docRef, updateDoc, merge)
-    .then(() => console.log('Documento atualizado com sucesso'))
-    .catch(console.log)
+  .then(() => log('Documento atualizado com sucesso'))
+  .catch(log)
 }
 
 if (true) {
   const newTitleDoc = { title: 'Grand Turismo ' }
   updateDoc(docRef, newTitleDoc)
-    .then(() => console.log('Documento atualizado com sucesso'))
-    .catch(console.log)
+    .then(() => log('Documento atualizado com sucesso'))
+    .catch(log)
 }
 */
