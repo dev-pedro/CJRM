@@ -12,7 +12,7 @@ import {
 const firebaseConfig = {
   apiKey: APIKEY,
   authDomain: AUTHDOMAIN,
-  projectId: PROJECTID,
+  projectId: PROJECTID, 
   storageBucket: STORAGEBUCKET,
   messagingSenderId: MESSAGINGSENDERID,
   appId: APPID,
@@ -34,25 +34,47 @@ const getFormatedDate = date => {
   return new Intl.DateTimeFormat('pt-BR', timeOptions).format(date)
 }
 
+const sanitize = text => DOMPurify.sanitize(text)
+
 const renderGamesList = querySnapshot => {
   const hasPendingWrites = querySnapshot.metadata.hasPendingWrites
   if (!hasPendingWrites) {
-    gamesLis.innerHTML = querySnapshot.docs.reduce((acc, doc) => {
+    gamesLis.textContent = ''
+    const games = querySnapshot.docs.map(doc => {
       const [id, { title, developedBy, createdAt }] = [doc.id, doc.data()]
       const date = createdAt.toDate()
+      
+      const liGame = document.createElement('li')
+      liGame.setAttribute('data-id', id)
+      liGame.setAttribute('class', 'my-4 d-flex flex-column')
 
-      return `${acc}<li class="my-4 d-flex flex-column" data-id="${id}">
-      <h5>${title}</h5>
-      
-      <ul>
-        <li>Desenvolvido por ${developedBy}</li>
-        <li>Adicionado ao banco em ${getFormatedDate(date)}</li>
-      </ul>
-  
-      <button class="btn btn-danger btn-sm align-self-end m-2" data-remove="${id}">Remover</button>
-      
-    </li>`
-    }, '')
+      const h5 = document.createElement('h5')
+      h5.textContent = sanitize(title)
+
+      const ul = document.createElement('ul')
+
+      const liDevelopedBy = document.createElement('li')
+      liDevelopedBy.textContent = `Desenvolvido por ${sanitize(developedBy)}`
+
+      if(createdAt){
+        const liDate = document.createElement('li')
+        liDate.textContent = `Adicionado ao banco em ${getFormatedDate(date)}`
+        ul.append(liDate)
+      }
+
+      const button = document.createElement('button')
+      button.textContent = 'Remover'
+      button.setAttribute('data-remove', id)
+      button.setAttribute('class', 'btn btn-danger btn-sm align-self-end m-2')
+
+      ul.append(liDevelopedBy)
+      liGame.append(h5, ul, button)
+
+      return liGame
+
+    })
+
+    games.forEach(game => gamesLis.append(game))
   }
 }
 
@@ -62,8 +84,8 @@ const to = async promise =>
 const addGame = async e => {
   e.preventDefault()
   const newGAme = {
-    title: e.target.title.value,
-    developedBy: e.target.developer.value,
+    title: sanitize(e.target.title.value),
+    developedBy: sanitize(e.target.developer.value),
     createdAt: serverTimestamp()  
   }
 
