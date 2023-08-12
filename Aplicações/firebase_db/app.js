@@ -12,7 +12,7 @@ import {
 const firebaseConfig = {
   apiKey: APIKEY,
   authDomain: AUTHDOMAIN,
-  projectId: PROJECTID, 
+  projectId: PROJECTID,
   storageBucket: STORAGEBUCKET,
   messagingSenderId: MESSAGINGSENDERID,
   appId: APPID,
@@ -36,46 +36,53 @@ const getFormatedDate = date => {
 
 const sanitize = text => DOMPurify.sanitize(text)
 
-const renderGamesList = querySnapshot => {
-  const hasPendingWrites = querySnapshot.metadata.hasPendingWrites
-  if (!hasPendingWrites) {
-    gamesLis.textContent = ''
-    const games = querySnapshot.docs.map(doc => {
-      const [id, { title, developedBy, createdAt }] = [doc.id, doc.data()]
-      const date = createdAt.toDate()
-      
-      const liGame = document.createElement('li')
-      liGame.setAttribute('data-id', id)
-      liGame.setAttribute('class', 'my-4 d-flex flex-column')
+const renderGame = doc => {
+  const [id, { title, developedBy, createdAt }] = [doc.id, doc.data()]
+  const date = createdAt.toDate()
 
-      const h5 = document.createElement('h5')
-      h5.textContent = sanitize(title)
+  const liGame = document.createElement('li')
+  liGame.setAttribute('data-id', id)
+  liGame.setAttribute('class', 'my-4 d-flex flex-column')
 
-      const ul = document.createElement('ul')
+  const h5 = document.createElement('h5')
+  h5.textContent = sanitize(title)
 
-      const liDevelopedBy = document.createElement('li')
-      liDevelopedBy.textContent = `Desenvolvido por ${sanitize(developedBy)}`
+  const ul = document.createElement('ul')
 
-      if(createdAt){
-        const liDate = document.createElement('li')
-        liDate.textContent = `Adicionado ao banco em ${getFormatedDate(date)}`
-        ul.append(liDate)
-      }
+  const liDevelopedBy = document.createElement('li')
+  liDevelopedBy.textContent = `Desenvolvido por ${sanitize(developedBy)}`
 
-      const button = document.createElement('button')
-      button.textContent = 'Remover'
-      button.setAttribute('data-remove', id)
-      button.setAttribute('class', 'btn btn-danger btn-sm align-self-end m-2')
-
-      ul.append(liDevelopedBy)
-      liGame.append(h5, ul, button)
-
-      return liGame
-
-    })
-
-    games.forEach(game => gamesLis.append(game))
+  if (createdAt) {
+    const liDate = document.createElement('li')
+    liDate.textContent = `Adicionado ao banco em ${getFormatedDate(date)}`
+    ul.append(liDate)
   }
+
+  const button = document.createElement('button')
+  button.textContent = 'Remover'
+  button.setAttribute('data-remove', id)
+  button.setAttribute('class', 'btn btn-danger btn-sm align-self-end m-2')
+
+  ul.append(liDevelopedBy)
+  liGame.append(h5, ul, button)
+  gamesLis.append(liGame)
+}
+
+const renderGamesList = snapshot => {
+  const hasPendingWrites = snapshot.metadata.hasPendingWrites
+  if (hasPendingWrites) {
+    return
+  }
+
+  snapshot.docChanges().forEach(({ type, doc }) => {
+    if (type === 'removed') {
+      const liGame = document.querySelector(`[data-id="${doc.id}"]`)
+      liGame.remove()
+      return
+    }
+
+    renderGame(doc)
+  })
 }
 
 const to = async promise =>
@@ -86,7 +93,7 @@ const addGame = async e => {
   const newGAme = {
     title: sanitize(e.target.title.value),
     developedBy: sanitize(e.target.developer.value),
-    createdAt: serverTimestamp()  
+    createdAt: serverTimestamp()
   }
 
   const [error, doc] = await to(addDoc(collectionGames, newGAme))
